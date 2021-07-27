@@ -17,7 +17,7 @@ class CreateAppointmentsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('patient_id')
-                  ->constrained('patients')
+                  ->constrained()
                   ->onDelete('cascade');
             $table->datetime('begins_at');
             $table->datetime('ends_at');
