@@ -15,13 +15,13 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->date('scheduled_from');
             $table->date('scheduled_till')->nullable();
             $table->string('day_name', 9)->nullable();
-            $table->string('active_week', 4); // all, odd, even, one
+            $table->string('weekly_recurrence', 6);
             $table->time('begins_at');
             $table->time('ends_at');
+            $table->timestamps();
         });
     }
 
