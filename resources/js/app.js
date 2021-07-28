@@ -2,7 +2,7 @@ import { Calendar } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 
-const calendarEl = document.getElementById('calendar')
+const calendarEl = document.querySelector('.calendar-js')
 
 const calendarEvents = [
   {

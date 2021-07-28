@@ -12400,7 +12400,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var calendarEl = document.getElementById('calendar');
+var calendarEl = document.querySelector('.calendar-js');
 var calendarEvents = [{
   title: 'All Day Event',
   start: '2018-01-01'
