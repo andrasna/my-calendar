@@ -1,5 +1,6 @@
 import { Calendar } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
 
 const calendarEl = document.getElementById('calendar')
 
@@ -61,11 +62,14 @@ const calendarEvents = [
 ] 
 
 const calendar = new Calendar(calendarEl, {
-  plugins: [ dayGridPlugin ],
+  plugins: [
+    dayGridPlugin,
+    timeGridPlugin,
+  ],
   headerToolbar: {
     left: 'prev,next today',
     center: 'title',
-    right: 'dayGridMonth,dayGridWeek,dayGridDay'
+    right: 'dayGridMonth,timeGridWeek,timeGridDay'
   },
   initialDate: '2018-01-12',
   navLinks: true, // can click day/week names to navigate views
