@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Calendar</h1>
+    <div id="calendar"></div>
     <script src="/js/app.js"></script>
 </body>
 </html>
