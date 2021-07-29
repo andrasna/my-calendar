@@ -17,10 +17,10 @@ class CreateSchedulesTable extends Migration
             $table->id();
             $table->date('scheduled_from');
             $table->date('scheduled_till')->nullable();
-            $table->string('day_name', 9)->nullable();
+            $table->tinyInteger('day_of_week')->nullable();
             $table->string('weekly_recurrence', 6);
-            $table->time('begins_at');
-            $table->time('ends_at');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->timestamps();
         });
     }
