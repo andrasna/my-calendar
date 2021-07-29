@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Schedule;
+use App\Http\Resources\ScheduleResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// Route::get('/schedules', function () {
+//     return Schedule::all();
+// });
+
+Route::get('/schedules', function () {
+    return ScheduleResource::collection(Schedule::all());
 });
