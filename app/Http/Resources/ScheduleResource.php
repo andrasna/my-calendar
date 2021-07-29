@@ -6,9 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ScheduleResource extends JsonResource
 {
-
-    public static $wrap = null;
-
     /**
      * Transform the resource into an array.
      *
@@ -27,5 +24,4 @@ class ScheduleResource extends JsonResource
             'daysOfWeek' => $this->day_of_week,
         ];
     }
-
 }
