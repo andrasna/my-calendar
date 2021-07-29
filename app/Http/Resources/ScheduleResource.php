@@ -21,7 +21,7 @@ class ScheduleResource extends JsonResource
             'endRecur' => $this->scheduled_till,
             'startTime' => $this->start_time,
             'endTime' => $this->end_time,
-            'daysOfWeek' => $this->day_of_week,
+            'daysOfWeek' => [$this->day_of_week],
         ];
     }
 }
