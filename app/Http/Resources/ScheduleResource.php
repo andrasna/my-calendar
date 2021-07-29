@@ -13,15 +13,23 @@ class ScheduleResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-
     public function toArray($request)
     {
+        if ($this->weekly_recurrence === 'none') {
+            return [
+                'id' => $this->id,
+                'title' => 'Schedule ' . $this->id,
+                'start' => $this->scheduled_from . 'T' . $this->start_time,
+                'end' => $this->scheduled_from . 'T' . $this->end_time,
+                'weeklyRecurrence' => $this->weekly_recurrence,
+            ];
+        }
+
         return [
             'id' => $this->id,
             'title' => 'Schedule ' . $this->id,
             'startRecur' => $this->scheduled_from,
             'endRecur' => $this->scheduled_till,
-            'weeklyRecurrence' => $this->weekly_recurrence,
             'daysOfWeek' => [
                 /**
                  * This array has a singele item.
@@ -32,6 +40,7 @@ class ScheduleResource extends JsonResource
             ],
             'startTime' => $this->start_time,
             'endTime' => $this->end_time,
+            'weeklyRecurrence' => $this->weekly_recurrence,
         ];
     }
 }
