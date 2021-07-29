@@ -16,7 +16,7 @@ class ScheduleResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => 'Clinic hours',
+            'title' => 'Schedule ' . $this->id,
             'startRecur' => $this->scheduled_from,
             'endRecur' => $this->scheduled_till,
             'startTime' => $this->start_time,
