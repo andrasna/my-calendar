@@ -19,6 +19,7 @@ class ScheduleResource extends JsonResource
         if ($this->weekly_recurrence === 'none') {
             return [
                 'id' => $this->id,
+                'groupId' => 'schedules',
                 'title' => 'Schedule ' . $this->id,
                 'display' => 'background',
                 'start' => $this->scheduled_from . 'T' . $this->start_time,
@@ -30,6 +31,7 @@ class ScheduleResource extends JsonResource
 
         return [
             'id' => $this->id,
+            'groupId' => 'schedules',
             'title' => 'Schedule ' . $this->id,
             'display' => 'background',
             'duration' => Helper::getTimeDiff($this->start_time, $this->end_time),

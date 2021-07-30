@@ -8,6 +8,7 @@ const calendarEl = document.querySelector('.calendar-js')
 
 const calendarOpts = {
     selectable: true,
+    selectConstraint: 'schedules',
     plugins: [
         interactionPlugin,
         timeGridPlugin,
@@ -18,12 +19,6 @@ const calendarOpts = {
         left: 'prev,next today',
         center: 'title',
         right: 'timeGridDay,timeGridWeek,dayGridMonth'
-    },
-    dateClick: function(info) {
-        console.log('working click')
-    },
-    select: function(info) {
-        console.log('working select')
     },
     selectMirror: true,
     initialView: 'timeGridWeek',
