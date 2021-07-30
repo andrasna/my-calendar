@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Schedule;
+use App\Models\Appointment;
 use App\Http\Resources\ScheduleResource;
+use App\Http\Resources\AppointmentResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +33,20 @@ Route::get('/schedules', function () {
         'end_time'
     ]));
 });
+
+Route::get('/appointments', function () {
+    return AppointmentResource::collection(Appointment::all([
+        'id',
+        'start_date',
+        'end_date'
+    ]));
+});
+
+Route::post('/appointments', function () {
+    // Check if date can be saved.
+    return [
+        'isDateSaved' => true,
+    ];
+});
+
+
