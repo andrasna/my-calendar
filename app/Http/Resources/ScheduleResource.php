@@ -5,6 +5,8 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Helper\Helper;
 
+// dd(Helper::getClosestDateOfAWeekday('Monday', '2021:08:01'));
+
 class ScheduleResource extends JsonResource
 {
     /**
@@ -21,26 +23,24 @@ class ScheduleResource extends JsonResource
                 'title' => 'Schedule ' . $this->id,
                 'start' => $this->scheduled_from . 'T' . $this->start_time,
                 'end' => $this->scheduled_from . 'T' . $this->end_time,
-                'weeklyRecurrence' => $this->weekly_recurrence,
             ];
         }
 
         return [
             'id' => $this->id,
             'title' => 'Schedule ' . $this->id,
-            'startRecur' => $this->scheduled_from,
-            'endRecur' => $this->scheduled_till,
-            'daysOfWeek' => [
-                /**
-                 * This array has a singele item.
-                 * Multiple days of fullcalendar are not supported,
-                 * but it expects an array.
-                 */
-                $this->day_of_week ?? Helper::strToDayAsNum($this->scheduled_from)
+            'duration' => Helper::getTimeDiff($this->start_time, $this->end_time),
+            'rrule' => [
+                'freq' => 'weekly',
+                'interval' => $this->weekly_recurrence === 'always' ? 1 : 2,
+                'dtstart' => Helper::shiftToOddOrEvenWeek(
+                    Helper::getClosestDateOfAWeekday(
+                        $this->day_of_week,
+                        $this->scheduled_from,
+                    ), $this->weekly_recurrence
+                ) . 'T' . $this->start_time,
+                'until' => $this->scheduled_till ?? '2027-01-01',
             ],
-            'startTime' => $this->start_time,
-            'endTime' => $this->end_time,
-            'weeklyRecurrence' => $this->weekly_recurrence,
         ];
     }
 }
