@@ -1,13 +1,15 @@
 import { Calendar } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
+import rrulePlugin from '@fullcalendar/rrule'
 
 const calendarEl = document.querySelector('.calendar-js')
 
 const calendar = new Calendar(calendarEl, {
     plugins: [
-        dayGridPlugin,
         timeGridPlugin,
+        rrulePlugin,
+        dayGridPlugin,
     ],
     headerToolbar: {
         left: 'prev,next today',
