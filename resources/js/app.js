@@ -3,6 +3,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import rrulePlugin from '@fullcalendar/rrule'
 import interactionPlugin from '@fullcalendar/interaction'
+import { isEmpty } from './utils'
 
 const calendarEl = document.querySelector('.calendar-js')
 
@@ -11,11 +12,18 @@ const calendarOpts = {
     selectConstraint: 'schedules',
     select(selection) {
         const nameOfPatient = window.prompt('The name of the patient: ')
+
+        if (isEmpty(nameOfPatient)) {
+            calendar.unselect()
+            return
+        }
+
         calendar.addEvent({
             start: selection.start,
             end: selection.end,
             title: nameOfPatient,
         })
+
         calendar.unselect()
     },
     plugins: [
