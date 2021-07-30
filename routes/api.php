@@ -21,5 +21,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/schedules', function () {
-    return ScheduleResource::collection(Schedule::all());
+    return ScheduleResource::collection(Schedule::all([
+        'id',
+        'scheduled_from',
+        'scheduled_till',
+        'day_of_week',
+        'weekly_recurrence',
+        'start_time',
+        'end_time'
+    ]));
 });
