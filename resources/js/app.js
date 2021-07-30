@@ -9,6 +9,9 @@ const calendarEl = document.querySelector('.calendar-js')
 const calendarOpts = {
     selectable: true,
     selectConstraint: 'schedules',
+    select: function() {
+        window.prompt('The name of the patient: ')
+    },
     plugins: [
         interactionPlugin,
         timeGridPlugin,
