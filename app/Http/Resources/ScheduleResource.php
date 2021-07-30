@@ -20,6 +20,7 @@ class ScheduleResource extends JsonResource
             return [
                 'id' => $this->id,
                 'title' => 'Schedule ' . $this->id,
+                'display' => 'background',
                 'start' => $this->scheduled_from . 'T' . $this->start_time,
                 'end' => $this->scheduled_from . 'T' . $this->end_time,
             ];
@@ -30,6 +31,7 @@ class ScheduleResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => 'Schedule ' . $this->id,
+            'display' => 'background',
             'duration' => Helper::getTimeDiff($this->start_time, $this->end_time),
             'rrule' => [
                 'freq' => 'weekly',

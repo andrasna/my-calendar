@@ -2,11 +2,14 @@ import { Calendar } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import rrulePlugin from '@fullcalendar/rrule'
+import interactionPlugin from '@fullcalendar/interaction'
 
 const calendarEl = document.querySelector('.calendar-js')
 
-const calendar = new Calendar(calendarEl, {
+const calendarOpts = {
+    selectable: true,
     plugins: [
+        interactionPlugin,
         timeGridPlugin,
         rrulePlugin,
         dayGridPlugin,
@@ -16,13 +19,28 @@ const calendar = new Calendar(calendarEl, {
         center: 'title',
         right: 'timeGridDay,timeGridWeek,dayGridMonth'
     },
-    weekends: false,
-    eventColor: 'rgba(44, 62, 80, .65)',
+    dateClick: function(info) {
+        console.log('working click')
+    },
+    select: function(info) {
+        console.log('working select')
+    },
+    selectMirror: true,
     initialView: 'timeGridWeek',
     navLinks: true, // can click day/week names to navigate views
-    editable: true,
     dayMaxEvents: true, // allow "more" link when too many events
-    events: 'http://my-calendar.test/api/schedules',
-})
+    weekends: false,
+    eventSources: [
+        {
+            // Schedule
+            url: 'http://my-calendar.test/api/schedules',
+        },
+        {
+            url: '',
+        }
+    ]
+}
+
+const calendar = new Calendar(calendarEl, calendarOpts)
 
 calendar.render()
