@@ -17,7 +17,7 @@ class CreateSchedulesTable extends Migration
             $table->id();
             $table->date('scheduled_from');
             $table->date('scheduled_till')->nullable();
-            $table->tinyInteger('day_of_week')->nullable();
+            $table->string('day_of_week', 9)->nullable();
             $table->string('weekly_recurrence', 6);
             $table->time('start_time');
             $table->time('end_time');
